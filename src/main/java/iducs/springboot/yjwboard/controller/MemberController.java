@@ -78,7 +78,7 @@ public class MemberController {
         return "/members/login";
     }
 
-    @PutMapping("/login")
+    @PostMapping("/login")
     public String postLogin(@ModelAttribute("member") Member member, HttpServletRequest request) {
         Member dto = null;
         if ((dto = memberService.loginByEmail(member)) != null) {
