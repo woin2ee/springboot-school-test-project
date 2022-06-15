@@ -17,8 +17,8 @@ public class ReplyServiceTests {
 
     @Test
     public void testReplyInit() {
-        IntStream.rangeClosed(1, 10).forEach(i -> {
-            Long seqLong = (long) new Random().nextInt(10);
+        IntStream.rangeClosed(1, 47).forEach(i -> {
+            Long seqLong = (long) new Random().nextInt(47);
             seqLong = (seqLong == 0) ? 1 : seqLong;
             BoardEntity boardEntity = BoardEntity.builder()
                     .bno(seqLong)
