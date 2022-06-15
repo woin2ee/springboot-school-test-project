@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AdminLTE 3 | General Form Elements</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+    <div th:replace="~{/nav :: navfrag}"/>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-6">
+                        <!-- general form elements -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Create Member</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <form action="#" th:action="@{'/members'}" th:object="${member}" th:method="post">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="exampleInputId">ID</label>
+                                        <input type="text" name="id" th:field="*{id}" class="form-control"
+                                               id="exampleInputId" placeholder="Enter id">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword">Password</label>
+                                        <input type="password" name="pw" th:field="*{pw}" class="form-control"
+                                               id="exampleInputPassword" placeholder="password">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputName">Name</label>
+                                        <input type="text" name="name" th:field="*{name}" class="form-control"
+                                               id="exampleInputName" placeholder="Enter name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail">Email address</label>
+                                        <input type="text" name="email" th:field="*{email}" class="form-control"
+                                               id="exampleInputEmail" placeholder="Enter email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPhone">Phone Number</label>
+                                        <input type="text" name="phone" th:field="*{phone}" class="form-control"
+                                               id="exampleInputPhone" placeholder="Enter phone number">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputAddress">Address</label>
+                                        <input type="text" name="address" th:field="*{address}" class="form-control"
+                                               id="exampleInputAddress" placeholder="Enter Address">
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">Register</button>
+                                    <a class="btn btn-primary" th:href="@{'/members'}">list</a>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!--/.col (left) -->
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+        <div class="float-right d-none d-sm-block">
+            <b>Version</b> 3.2.0
+        </div>
+        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    </footer>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- bs-custom-file-input -->
+<script src="../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../dist/js/demo.js"></script>
+<!-- Page specific script -->
+<script>
+    $(function () {
+        bsCustomFileInput.init();
+    });
+</script>
+</body>
+</html>
