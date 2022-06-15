@@ -89,7 +89,7 @@ public class MemberController {
                 session.setAttribute("isAdmin", true);
             }
 
-            return "redirect:/home/";
+            return "redirect:/";
         } else {
             return "/members/loginfail";
         }
