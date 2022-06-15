@@ -67,7 +67,8 @@
                 </div>
                 <div class="form-group">
                   <label for="writerSeq">WriterSeq</label>
-                  <input type="text" th:field="*{writerSeq}" id="writerSeq" class="form-control">
+                  <input type="text" th:value="${session.login.seq}" th:name="writerSeq" readonly
+                         id="writerSeq" class="form-control">
                 </div>
 
                 <div class="col-12">

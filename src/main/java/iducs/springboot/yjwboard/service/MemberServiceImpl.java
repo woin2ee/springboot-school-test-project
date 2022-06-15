@@ -112,6 +112,16 @@ public class MemberServiceImpl implements MemberService {
         return new PageResultDTO<>(result, fn);
     }
 
+    @Override
+    public Member loginByEmail(Member member) {
+        Member result = null;
+        Object entity = memberRepository.getMemberByEmail(member.getEmail(), member.getPw());
+        if (entity != null) {
+            result = entityToDto((MemberEntity) entity);
+        }
+        return result;
+    }
+
     private BooleanBuilder findByCondition(PageRequestDTO pageRequestDTO) {
         String type = pageRequestDTO.getType();
         BooleanBuilder booleanBuilder = new BooleanBuilder();

@@ -18,4 +18,6 @@ public interface MemberService {
     Member readByEmail(String email);
 
     PageResultDTO<Member, MemberEntity> readListBy(PageRequestDTO pageRequestDTO);
+
+    Member loginByEmail(Member member);
 }

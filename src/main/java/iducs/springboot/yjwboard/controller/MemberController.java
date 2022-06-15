@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/members")
 public class MemberController {
@@ -69,74 +72,26 @@ public class MemberController {
         return "redirect:/members";
     }
 
-
-    @GetMapping("/th")
-    public String getThymeleaf() {
-        return "thymeleaf";
-    }
-
-    @GetMapping("/buttons")
-    public String getButtons() {
-        return "buttons";
-    }
-
-    @GetMapping("/cards")
-    public String getCards() {
-        return "cards";
-    }
-
-    @GetMapping("/utilities-color")
-    public String getUtilitiesColor() {
-        return "utilities-color";
-    }
-
-    @GetMapping("/utilities-border")
-    public String getUtilitiesBorder() {
-        return "utilities-border";
-    }
-
-    @GetMapping("/utilities-animation")
-    public String getUtilitiesAnimation() {
-        return "utilities-animation";
-    }
-
-    @GetMapping("/utilities-other")
-    public String getUtilitiesOther() {
-        return "utilities-other";
-    }
-
     @GetMapping("/login")
-    public String getLogin() {
-        return "login";
+    public String getLoginForm(Model model) {
+        model.addAttribute("member", Member.builder().build());
+        return "/members/login";
     }
 
-    @GetMapping("/register")
-    public String getRegister() {
-        return "register";
-    }
+    @PutMapping("/login")
+    public String postLogin(@ModelAttribute("member") Member member, HttpServletRequest request) {
+        Member dto = null;
+        if ((dto = memberService.loginByEmail(member)) != null) {
+            HttpSession session = request.getSession();
+            session.setAttribute("login", dto);
 
-    @GetMapping("/forgot-password")
-    public String getForgotPassword() {
-        return "forgot-password";
-    }
+            if (dto.getId().contains("admin")) {
+                session.setAttribute("isAdmin", true);
+            }
 
-    @GetMapping("/404")
-    public String get404() {
-        return "404";
-    }
-
-    @GetMapping("/blank")
-    public String getBlank() {
-        return "blank";
-    }
-
-    @GetMapping("/charts")
-    public String getCharts() {
-        return "charts";
-    }
-
-    @GetMapping("/tables")
-    public String getTables() {
-        return "tables";
+            return "redirect:/home/";
+        } else {
+            return "/members/loginfail";
+        }
     }
 }
