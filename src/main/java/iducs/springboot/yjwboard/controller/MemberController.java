@@ -94,4 +94,10 @@ public class MemberController {
             return "/members/loginfail";
         }
     }
+
+    @GetMapping("/logout")
+    public String getLogout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/";
+    }
 }
