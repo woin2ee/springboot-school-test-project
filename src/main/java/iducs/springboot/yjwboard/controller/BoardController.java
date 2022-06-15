@@ -24,7 +24,7 @@ public class BoardController {
 
     @GetMapping("/regform")
     public String getRegform(Model model) {
-        model.addAttribute("dto", Board.builder().build());
+        model.addAttribute("board", Board.builder().build());
         return "/boards/regform";
     }
 

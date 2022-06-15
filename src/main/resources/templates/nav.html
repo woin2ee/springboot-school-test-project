@@ -159,12 +159,20 @@
         <!-- Sidebar -->
         <div class="sidebar">
             <!-- Sidebar user panel (optional) -->
-            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex" th:if="${session.login != null}">
                 <div class="image">
                     <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">MyName</a>
+                    <a href="#" class="d-block">[[ ${session.login.email} ]] logout </a>
+                </div>
+            </div>
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex" th:unless="${session.login != null}">
+<!--                <div class="image">-->
+<!--                    <img src="#" class="img-circle elevation-2" alt="">-->
+<!--                </div>-->
+                <div class="info">
+                    <a href="#" class="d-block">로그인 전</a>
                 </div>
             </div>
 
@@ -197,7 +205,7 @@
                                 <span class="badge badge-info right">6</span>
                             </p>
                         </a>
-                        <ul class="nav nav-treeview">
+                        <ul class="nav nav-treeview" th:unless="${session.login != null}">
                             <li class="nav-item">
                                 <a href="../members/regform" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
@@ -208,6 +216,20 @@
                                 <a href="../members/login" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Member Login</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview" th:if="${session.login != null}">
+                            <li class="nav-item">
+                                <a th:href="'../members/' + ${session.login.seq}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Member Info</p>
+                                </a>
+                            </li>
+                            <li class="nav-item" th:if="${session.isAdmin != null}">
+                                <a href="../members" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Member List</p>
                                 </a>
                             </li>
                         </ul>
@@ -228,24 +250,24 @@
                                     <p>Board List</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" th:if="${session.login != null}">
                                 <a href="../boards/regform" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Board Register</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="pages/forms/editors.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Editors</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages/forms/validation.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Validation</p>
-                                </a>
-                            </li>
+<!--                            <li class="nav-item">-->
+<!--                                <a href="pages/forms/editors.html" class="nav-link">-->
+<!--                                    <i class="far fa-circle nav-icon"></i>-->
+<!--                                    <p>Editors</p>-->
+<!--                                </a>-->
+<!--                            </li>-->
+<!--                            <li class="nav-item">-->
+<!--                                <a href="pages/forms/validation.html" class="nav-link">-->
+<!--                                    <i class="far fa-circle nav-icon"></i>-->
+<!--                                    <p>Validation</p>-->
+<!--                                </a>-->
+<!--                            </li>-->
                         </ul>
                     </li>
 
