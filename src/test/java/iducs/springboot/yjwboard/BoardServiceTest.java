@@ -6,6 +6,7 @@ import iducs.springboot.yjwboard.domain.PageResultDTO;
 import iducs.springboot.yjwboard.entity.BoardEntity;
 import iducs.springboot.yjwboard.repository.BoardRepository;
 import iducs.springboot.yjwboard.service.BoardService;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -20,7 +21,7 @@ public class BoardServiceTest {
     @Autowired
     BoardRepository boardRepository;
 
-//    @Test
+    @Test
     public void testInitBoards() {
         IntStream.rangeClosed(1, 47).forEach(i -> {
             Long seqLong = (long) new Random().nextInt(50);
