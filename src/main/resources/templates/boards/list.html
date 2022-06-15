@@ -113,6 +113,20 @@
                     </table>
                 </div>
                 <!-- /.card-body -->
+                <nav aria-label="Contacts Page Navigation">
+                    <ul class="pagination justify-content-center m-0">
+                        <li class="page-item" th:if="${list.prevPage}">
+                            <a class="page-link" th:href="@{/boards(page=${list.startPage - 1})}">Prev</a>
+                        </li>
+                        <li th:class="'page-item' + ${list.currentPage == page? ' active':''}"
+                            th:each="page : ${list.pageList}">
+                            <a class="page-link" th:href="@{/boards(page=${page})}">[[${page}]]</a>
+                        </li>
+                        <li class="page-item" th:if="${list.nextPage}">
+                            <a class="page-link" th:href="@{/boards(page=${list.endPage + 1})}">Next</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
             <!-- /.card -->
 
