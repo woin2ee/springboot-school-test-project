@@ -1,6 +1,6 @@
 package iducs.springboot.yjwboard;
 
-import iducs.springboot.yjwboard.domain.Board;
+import iducs.springboot.yjwboard.domain.BoardDTO;
 import iducs.springboot.yjwboard.domain.PageRequestDTO;
 import iducs.springboot.yjwboard.domain.PageResultDTO;
 import iducs.springboot.yjwboard.entity.BoardEntity;
@@ -27,12 +27,12 @@ public class BoardServiceTest {
             Long seqLong = (long) new Random().nextInt(50);
             seqLong = (seqLong == 0) ? 1 : seqLong;
 
-            Board board = Board.builder()
+            BoardDTO boardDTO = BoardDTO.builder()
                     .title("title" + i)
                     .content("Content...")
                     .writerSeq(seqLong)
                     .build();
-            Long bno = boardService.register(board);
+            Long bno = boardService.register(boardDTO);
         });
     }
 
@@ -40,8 +40,8 @@ public class BoardServiceTest {
     public void testList() {
         PageRequestDTO pageRequestDTO = new PageRequestDTO();
 //        pageRequestDTO.setPage(2);
-        PageResultDTO<Board, Object[]> result = boardService.getList(pageRequestDTO);
-        for(Board dto : result.getDtoList())
+        PageResultDTO<BoardDTO, Object[]> result = boardService.getList(pageRequestDTO);
+        for(BoardDTO dto : result.getDtoList())
             System.out.println(dto.getBno() + " : " + dto.getTitle());
     }
 

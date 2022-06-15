@@ -56,7 +56,7 @@
             </div>
 
             <div class="card-body">
-              <form th:action="@{'/boards'}" th:object="${board}" th:method="post">
+              <form th:action="@{'/boards'}" th:object="${boardDTO}" th:method="post">
                 <div class="form-group">
                   <label for="title">Title</label>
                   <input type="text" th:field="*{title}" id="title" class="form-control">

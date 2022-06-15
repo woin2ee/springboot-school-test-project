@@ -1,34 +1,34 @@
 package iducs.springboot.yjwboard.service;
 
-import iducs.springboot.yjwboard.domain.Board;
+import iducs.springboot.yjwboard.domain.BoardDTO;
 import iducs.springboot.yjwboard.domain.PageRequestDTO;
 import iducs.springboot.yjwboard.domain.PageResultDTO;
 import iducs.springboot.yjwboard.entity.BoardEntity;
 import iducs.springboot.yjwboard.entity.MemberEntity;
 
 public interface BoardService {
-    Long register(Board board);
-    PageResultDTO<Board, Object[]> getList(PageRequestDTO pageRequestDTO);
+    Long register(BoardDTO boardDTO);
+    PageResultDTO<BoardDTO, Object[]> getList(PageRequestDTO pageRequestDTO);
 
-    Board getById(Long bno);
-    Long modify(Board board);
+    BoardDTO getById(Long bno);
+    Long modify(BoardDTO boardDTO);
     void deleteWithRepliesById(Long bno);
 
-    default BoardEntity dtoToEntity(Board board) {
+    default BoardEntity dtoToEntity(BoardDTO boardDTO) {
         MemberEntity memberEntity = MemberEntity.builder()
-                .seq(board.getWriterSeq())
+                .seq(boardDTO.getWriterSeq())
                 .build();
         BoardEntity boardEntity = BoardEntity.builder()
-                .bno(board.getBno())
-                .title(board.getTitle())
-                .content(board.getContent())
+                .bno(boardDTO.getBno())
+                .title(boardDTO.getTitle())
+                .content(boardDTO.getContent())
                 .writer(memberEntity)
                 .build();
         return boardEntity;
     }
 
-    default Board entityToDto(BoardEntity entity, MemberEntity member, Long replyCount) {
-        Board board = Board.builder()
+    default BoardDTO entityToDto(BoardEntity entity, MemberEntity member, Long replyCount) {
+        BoardDTO boardDTO = BoardDTO.builder()
                 .bno(entity.getBno())
                 .title(entity.getTitle())
                 .content(entity.getContent())
@@ -40,6 +40,6 @@ public interface BoardService {
                 .modDate(entity.getModDate())
                 .replyCount(replyCount.intValue())
                 .build();
-        return board;
+        return boardDTO;
     }
 }

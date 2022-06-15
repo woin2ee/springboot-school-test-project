@@ -1,6 +1,6 @@
 package iducs.springboot.yjwboard.service;
 
-import iducs.springboot.yjwboard.domain.Board;
+import iducs.springboot.yjwboard.domain.BoardDTO;
 import iducs.springboot.yjwboard.domain.PageRequestDTO;
 import iducs.springboot.yjwboard.domain.PageResultDTO;
 import iducs.springboot.yjwboard.entity.BoardEntity;
@@ -29,17 +29,17 @@ public class BoardServiceImpl implements BoardService {
 
 
     @Override
-    public Long register(Board board) {
-        log.info("board register : " + board);
-        BoardEntity boardEntity = dtoToEntity(board);
+    public Long register(BoardDTO boardDTO) {
+        log.info("board register : " + boardDTO);
+        BoardEntity boardEntity = dtoToEntity(boardDTO);
         boardRepository.save(boardEntity);
         return boardEntity.getBno();
     }
 
     @Override
-    public PageResultDTO<Board, Object[]> getList(PageRequestDTO pageRequestDTO) {
+    public PageResultDTO<BoardDTO, Object[]> getList(PageRequestDTO pageRequestDTO) {
         log.info(">>>>>" + pageRequestDTO);
-        Function<Object[], Board> fn =
+        Function<Object[], BoardDTO> fn =
                 (entities -> entityToDto((BoardEntity) entities[0], (MemberEntity) entities[1], (Long) entities[2]));
         Page<Object[]> result =
                 boardRepository.getBoardWithReplyCount(pageRequestDTO.getPageable(Sort.by("bno").descending()));
@@ -47,20 +47,20 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public Board getById(Long bno) {
+    public BoardDTO getById(Long bno) {
         Object result = boardRepository.getBoardByBno(bno);
         Object[] en = (Object[]) result;
         return entityToDto((BoardEntity) en[0], (MemberEntity) en[1], (Long) en[2]);
     }
 
     @Override
-    public Long modify(Board board) {
-        Optional<BoardEntity> result = boardRepository.findById(board.getBno());
+    public Long modify(BoardDTO boardDTO) {
+        Optional<BoardEntity> result = boardRepository.findById(boardDTO.getBno());
         BoardEntity boardEntity = null;
         if (result.isPresent()) {
             boardEntity = (BoardEntity) result.get();
-            boardEntity.changeTitle(board.getTitle());
-            boardEntity.changeContent(board.getContent());
+            boardEntity.changeTitle(boardDTO.getTitle());
+            boardEntity.changeContent(boardDTO.getContent());
             boardRepository.save(boardEntity);
         }
         assert boardEntity != null;

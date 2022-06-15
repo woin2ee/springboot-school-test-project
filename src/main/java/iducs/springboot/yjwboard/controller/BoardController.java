@@ -1,6 +1,6 @@
 package iducs.springboot.yjwboard.controller;
 
-import iducs.springboot.yjwboard.domain.Board;
+import iducs.springboot.yjwboard.domain.BoardDTO;
 import iducs.springboot.yjwboard.domain.PageRequestDTO;
 import iducs.springboot.yjwboard.service.BoardService;
 import org.springframework.stereotype.Controller;
@@ -24,13 +24,13 @@ public class BoardController {
 
     @GetMapping("/regform")
     public String getRegform(Model model) {
-        model.addAttribute("board", Board.builder().build());
+        model.addAttribute("boardDTO", BoardDTO.builder().build());
         return "/boards/regform";
     }
 
     @PostMapping("")
-    public String postBoard(@ModelAttribute("board") Board board) {
-        boardService.register(board);
+    public String postBoard(@ModelAttribute("boardDTO") BoardDTO boardDTO) {
+        boardService.register(boardDTO);
         return "redirect:/boards"; // get 방식으로 해당 URI 요청
     }
 
