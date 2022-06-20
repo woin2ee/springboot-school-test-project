@@ -16,6 +16,8 @@ public interface BoardService {
 
     void increaseViewsById(Long bno);
 
+
+
     default BoardEntity dtoToEntity(BoardDTO boardDTO) {
         MemberEntity memberEntity = MemberEntity.builder()
                 .seq(boardDTO.getWriterSeq())

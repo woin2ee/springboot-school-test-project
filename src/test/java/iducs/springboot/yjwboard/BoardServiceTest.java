@@ -27,10 +27,12 @@ public class BoardServiceTest {
             Long seqLong = (long) new Random().nextInt(47);
             seqLong = (seqLong == 0) ? 1 : seqLong;
 
+            Long views = 0L;
+
             BoardDTO boardDTO = BoardDTO.builder()
                     .title("title" + i)
                     .content("Content...")
-                    .views(0L)
+                    .views(views)
                     .writerSeq(seqLong)
                     .build();
             Long bno = boardService.register(boardDTO);
