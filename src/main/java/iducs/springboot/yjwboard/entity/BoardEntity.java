@@ -5,7 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tb202012069_board")
+@Table(name = "board202012069")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,6 +19,8 @@ public class BoardEntity extends BaseEntity {
     private String title;
     private String content;
 
+    private Long views;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private MemberEntity writer;
 
@@ -28,5 +30,10 @@ public class BoardEntity extends BaseEntity {
 
     public void changeContent(String content) {
         this.content = content;
+    }
+
+    public void addOneToViews() {
+        if (views == null) { views = 0L; }
+        views += 1;
     }
 }

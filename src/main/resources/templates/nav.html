@@ -207,13 +207,13 @@
                         </a>
                         <ul class="nav nav-treeview" th:unless="${session.login != null}">
                             <li class="nav-item">
-                                <a href="../members/regform" class="nav-link">
+                                <a href="/members/regform" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Member Register</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="../members/login" class="nav-link">
+                                <a href="/members/login" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Member Login</p>
                                 </a>
@@ -221,7 +221,7 @@
                         </ul>
                         <ul class="nav nav-treeview" th:if="${session.login != null}">
                             <li class="nav-item">
-                                <a th:href="'../members/' + ${session.login.seq}" class="nav-link">
+                                <a th:href="'/members/' + ${session.login.seq}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Member Info</p>
                                 </a>
@@ -245,13 +245,13 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="../boards" class="nav-link">
+                                <a href="/boards" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Board List</p>
                                 </a>
                             </li>
                             <li class="nav-item" th:if="${session.login != null}">
-                                <a href="../boards/regform" class="nav-link">
+                                <a href="/boards/regform" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Board Register</p>
                                 </a>

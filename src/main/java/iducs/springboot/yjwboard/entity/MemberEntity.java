@@ -5,7 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tb202012069_member")
+@Table(name = "member202012069")
 
 @Getter
 @Setter
@@ -29,4 +29,6 @@ public class MemberEntity extends BaseEntity {
     private String phone;
     @Column(length = 100)
     private String address;
+    @Column(length = 5)
+    private String level;
 }

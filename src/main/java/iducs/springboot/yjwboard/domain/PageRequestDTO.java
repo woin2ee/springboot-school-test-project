@@ -15,6 +15,7 @@ public class PageRequestDTO {
     private int size;
     private String type;
     private String keyword;
+    private String level;
 
     public PageRequestDTO() {
         this.page = 1;

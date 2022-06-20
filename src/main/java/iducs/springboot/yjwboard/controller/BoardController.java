@@ -19,6 +19,7 @@ public class BoardController {
     @GetMapping("")
     public String getBoards(PageRequestDTO pageRequestDTO, Model model) {
         model.addAttribute("list", boardService.getList(pageRequestDTO));
+        System.out.println(boardService.getList(pageRequestDTO));
         return "/boards/list";
     }
 
@@ -36,6 +37,7 @@ public class BoardController {
 
     @GetMapping("/{bno}")
     public String getBoard(@PathVariable("bno") Long bno, Model model) {
+        boardService.increaseViewsById(bno);
         model.addAttribute("dto", boardService.getById(bno));
         return "/boards/read";
     }

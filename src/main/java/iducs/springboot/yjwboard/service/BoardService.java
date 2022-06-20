@@ -14,6 +14,8 @@ public interface BoardService {
     Long modify(BoardDTO boardDTO);
     void deleteWithRepliesById(Long bno);
 
+    void increaseViewsById(Long bno);
+
     default BoardEntity dtoToEntity(BoardDTO boardDTO) {
         MemberEntity memberEntity = MemberEntity.builder()
                 .seq(boardDTO.getWriterSeq())
@@ -39,6 +41,7 @@ public interface BoardService {
                 .regDate(entity.getRegDate())
                 .modDate(entity.getModDate())
                 .replyCount(replyCount.intValue())
+                .views(entity.getViews())
                 .build();
         return boardDTO;
     }

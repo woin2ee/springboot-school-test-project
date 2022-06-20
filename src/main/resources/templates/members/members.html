@@ -57,8 +57,15 @@
                     <option value="p">phone</option>
                     <option value="a">address</option>
                     <option value="ea">email+address</option>
-                  </select>
                   <input type="text" name="keyword" class="form-control float-right" placeholder="keyword">
+
+                  </select>
+                  <select class="form-control" name="level">
+                    <option value=""> 선택 </option>
+                    <option value="1">1단계</option>
+                    <option value="2">2단계</option>
+                    <option value="3">3단계</option>
+                  </select>
 
                   <div class="input-group-append">
                     <button type="submit" class="btn btn-default">
@@ -101,16 +108,16 @@
                   <ul class="pagination justify-content-center m-0">
                     <li class="page-item" th:if="${list.prevPage}">
                       <a class="page-link" th:href="@{/members(page=${list.startPage - 1},
-                      type=${pageRequestDTO.type}, keyword=${pageRequestDTO.keyword})}">Prev</a>
+                      type=${pageRequestDTO.type}, keyword=${pageRequestDTO.keyword}, level=${pageRequestDTO.level})}">Prev</a>
                     </li>
                     <li th:class="'page-item' + ${list.currentPage == page? ' active':''}"
                         th:each="page : ${list.pageList}">
                       <a class="page-link" th:href="@{/members(page=${page},
-                      type=${pageRequestDTO.type}, keyword=${pageRequestDTO.keyword})}">[[${page}]]</a>
+                      type=${pageRequestDTO.type}, keyword=${pageRequestDTO.keyword}, level=${pageRequestDTO.level})}">[[${page}]]</a>
                     </li>
                     <li class="page-item" th:if="${list.nextPage}">
                       <a class="page-link" th:href="@{/members(page=${list.endPage + 1},
-                      type=${pageRequestDTO.type}, keyword=${pageRequestDTO.keyword})}">Next</a>
+                      type=${pageRequestDTO.type}, keyword=${pageRequestDTO.keyword}, level=${pageRequestDTO.level})}">Next</a>
                     </li>
                   </ul>
                 </nav>

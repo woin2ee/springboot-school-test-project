@@ -33,6 +33,7 @@ class Board202012069ApplicationTests {
                     .email("email" + i + "@induk.ac.kr")
                     .phone("phone " + new Random().nextInt(50))
                     .address("address " + new Random().nextInt(50))
+                    .level("" + (i % 3 + 1))
                     .build();
             memberRepository.save(memberEntity);
         });

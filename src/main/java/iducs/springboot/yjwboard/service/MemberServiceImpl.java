@@ -36,6 +36,7 @@ public class MemberServiceImpl implements MemberService {
                 .email(member.getEmail())
                 .phone(member.getPhone())
                 .address(member.getAddress())
+                .level(member.getLevel())
                 .build();
     }
 
@@ -48,6 +49,7 @@ public class MemberServiceImpl implements MemberService {
                 .email(entity.getEmail())
                 .phone(entity.getPhone())
                 .address(entity.getAddress())
+                .level(entity.getLevel())
                 .build();
     }
 
@@ -124,6 +126,7 @@ public class MemberServiceImpl implements MemberService {
 
     private BooleanBuilder findByCondition(PageRequestDTO pageRequestDTO) {
         String type = pageRequestDTO.getType();
+        String level = pageRequestDTO.getLevel();
         BooleanBuilder booleanBuilder = new BooleanBuilder();
 
         QMemberEntity qMemberEntity = QMemberEntity.memberEntity;
@@ -131,9 +134,11 @@ public class MemberServiceImpl implements MemberService {
         BooleanExpression expression = qMemberEntity.seq.gt(0L); // where seq > 0 and title == "ti"
         booleanBuilder.and(expression);
 
-        if(type == null || type.trim().length() == 0) {
+        if(type == null || type.trim().length() == 0 && level == null) {
             return booleanBuilder;
         }
+
+
 
         String keyword = pageRequestDTO.getKeyword();
 
@@ -144,7 +149,13 @@ public class MemberServiceImpl implements MemberService {
             conditionBuilder.or(qMemberEntity.phone.contains(keyword));
         if(type.contains("a"))
             conditionBuilder.or(qMemberEntity.address.contains(keyword));
+
+        if(level != null) {
+            conditionBuilder.and(qMemberEntity.level.contains(level));
+        }
+
         booleanBuilder.and(conditionBuilder);
+
         return booleanBuilder;
     }
 }

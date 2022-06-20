@@ -42,7 +42,7 @@ public class BoardServiceImpl implements BoardService {
         Function<Object[], BoardDTO> fn =
                 (entities -> entityToDto((BoardEntity) entities[0], (MemberEntity) entities[1], (Long) entities[2]));
         Page<Object[]> result =
-                boardRepository.getBoardWithReplyCount(pageRequestDTO.getPageable(Sort.by("bno").descending()));
+                boardRepository.getBoardWithReplyCount(pageRequestDTO.getPageable(Sort.by("views").descending()));
         return new PageResultDTO<>(result, fn);
     }
 
@@ -72,5 +72,16 @@ public class BoardServiceImpl implements BoardService {
     public void deleteWithRepliesById(Long bno) {
         replyRepository.deleteByBno(bno);
         boardRepository.deleteById(bno);
+    }
+
+    @Override
+    public void increaseViewsById(Long bno) {
+        Optional<BoardEntity> result = boardRepository.findById(bno);
+        if (result.isPresent()) {
+            System.out.println(result);
+            BoardEntity boardEntity = result.get();
+            boardEntity.addOneToViews();
+            boardRepository.save(boardEntity);
+        }
     }
 }

@@ -24,12 +24,13 @@ public class BoardServiceTest {
     @Test
     public void testInitBoards() {
         IntStream.rangeClosed(1, 47).forEach(i -> {
-            Long seqLong = (long) new Random().nextInt(50);
+            Long seqLong = (long) new Random().nextInt(47);
             seqLong = (seqLong == 0) ? 1 : seqLong;
 
             BoardDTO boardDTO = BoardDTO.builder()
                     .title("title" + i)
                     .content("Content...")
+                    .views(0L)
                     .writerSeq(seqLong)
                     .build();
             Long bno = boardService.register(boardDTO);

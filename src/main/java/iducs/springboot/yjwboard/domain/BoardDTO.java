@@ -23,4 +23,6 @@ public class BoardDTO {
     private String writerEmail;
 
     private int replyCount;
+
+    private Long views;
 }
